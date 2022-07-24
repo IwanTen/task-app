@@ -65,13 +65,24 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.create {
+.create-task {
   background: white;
   min-height: 300px;
+  padding: 1rem;
   margin-bottom: 1rem;
   border-radius: 6px;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .collapsed {

@@ -52,12 +52,23 @@ body {
   }
 }
 
-.create {
+.create-task {
   background: white;
   min-height: 300px;
+  padding: 1rem;
   margin-bottom: 1rem;
   border-radius: 6px;
   transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__header {
+    &__title {
+    }
+  }
+
+  &__form {
+  }
 }
 
 .collapsed {
