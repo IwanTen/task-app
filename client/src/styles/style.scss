@@ -42,6 +42,7 @@ body {
   background: white;
   border-radius: 6px;
   padding: 1rem;
+  min-width: 100%;
   // min-width: 300px;
   justify-self: flex-start;
   &__header {
@@ -68,6 +69,8 @@ body {
   }
 
   &__form {
+    display: flex;
+    flex-direction: column;
   }
 }
 

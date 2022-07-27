@@ -1,35 +1,27 @@
 import { useEffect, useState } from "react";
 
-type Props = {};
+type Props = {
+  createTask: (data: any) => void;
+};
 
 interface CardData {
   name: string;
   info: string;
 }
 
-const Create = ({}: Props) => {
+const Create: React.FC<Props> = (Props) => {
   const [data, setData] = useState<CardData>({
     name: "",
     info: "",
   });
   const [collapsed, setCollapsed] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    fetch("/api/v1/tasks", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: data.name }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+    Props.createTask(data);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { value, name } = e.target;
     setData((data) => {
       return {
@@ -56,6 +48,11 @@ const Create = ({}: Props) => {
             name="name"
             onChange={handleChange}
           />
+        </label>
+
+        <label>
+          {"add description (optional)"}
+          <textarea name="info" onChange={handleChange}></textarea>
         </label>
         <button>add task</button>
       </form>
