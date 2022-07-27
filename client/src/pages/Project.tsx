@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Card from "../components/Card";
-import Create from "../components/Create";
-import "./styles/style.css";
+import TaskForm from "../components/TaskForm";
+import "../styles/style.css";
 
 type Props = {};
 
@@ -10,6 +10,7 @@ const apiUrl = "/api/v1/tasks";
 
 const App = (props: Props) => {
   const [cardData, setCardData] = useState<any[]>([]);
+  const [formIsOpen, setFormIsOpen] = useState<Boolean>(true);
 
   useEffect(() => {
     fetchAllTasks();
@@ -86,14 +87,26 @@ const App = (props: Props) => {
   }
 
   return (
-    <div>
-      <Header />
-
-      <div className="content">
-        <Create createTask={createTask} />
-        <div className="cards">{Cards}</div>
-        <button onClick={() => fetchAllTasks()}>fetch data</button>
+    <div className="project-page">
+      <div className="project-page__header">
+        <h1 className="project-page__header__title">MY PROJECT</h1>
+        <h2
+          className="project-page__header__form-button"
+          onClick={() => setFormIsOpen(!formIsOpen)}
+        >
+          create new task
+        </h2>
       </div>
+      <TaskForm
+        formOpen={formIsOpen}
+        createTask={createTask}
+        closeForm={() => {
+          console.log("close form");
+          setFormIsOpen(!formIsOpen);
+        }}
+      />
+      <div className="cards">{Cards}</div>
+      <button onClick={() => fetchAllTasks()}>fetch data</button>
     </div>
   );
 };

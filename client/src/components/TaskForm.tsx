@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { IoMdClose as CloseIcon } from "react-icons/io";
 
 type Props = {
   createTask: (data: any) => void;
+  formOpen: Boolean;
+  closeForm: () => void;
 };
 
 interface CardData {
@@ -14,7 +17,7 @@ const Create: React.FC<Props> = (Props) => {
     name: "",
     info: "",
   });
-  const [collapsed, setCollapsed] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -32,12 +35,17 @@ const Create: React.FC<Props> = (Props) => {
   };
 
   useEffect(() => {
+    console.log(open);
+  }, [open]);
+
+  useEffect(() => {
     console.log(data);
   }, [data]);
   return (
-    <div className={`create-task`} onClick={() => setCollapsed(!collapsed)}>
+    <div className={`create-task ${Props.formOpen == true ? "collapsed" : ""}`}>
       <div className="create-task__header">
         <h2 className="create-task__header__title">create a new task</h2>
+        <CloseIcon className="create-task-close" onClick={Props.closeForm} />
       </div>
       <form className="create-task__form" onSubmit={handleSubmit}>
         <label>
@@ -54,7 +62,7 @@ const Create: React.FC<Props> = (Props) => {
           {"add description (optional)"}
           <textarea name="info" onChange={handleChange}></textarea>
         </label>
-        <button>add task</button>
+        <button className="create-task-submit">add task</button>
       </form>
     </div>
   );

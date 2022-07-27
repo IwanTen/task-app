@@ -1,0 +1,32 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+  padding: 2rem;
+}
+.card {
+  background-color: #fff;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  padding: 1rem;
+  min-width: 100%;
+  min-height: 300px;
+  justify-self: flex-start;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    &__title {
+      color: var(--primary-text);
+    }
+  }
+  &__info {
+    color: var(--secondary-text);
+  }
+}
+
+.close-button {
+  fill: var(--primary-text);
+}

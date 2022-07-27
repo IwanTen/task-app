@@ -1,0 +1,34 @@
+.create-task {
+  background: white;
+  min-height: 300px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    &__title {
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__submit {
+  }
+}
+
+.collapsed {
+  transform: (translateX(100%));
+  transition: 0.3s;
+}

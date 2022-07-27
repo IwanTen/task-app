@@ -16,9 +16,9 @@ const Card: React.FC<Props> = (Props) => {
     <div className="card">
       <div className="card__header">
         <h2 className="card__header__title">{Props.title}</h2>
-        <CloseIcon onClick={deleteCard} />
+        <CloseIcon className="close-button" onClick={deleteCard} />
       </div>
-      <p className="card__description">{Props.info}</p>
+      <p className="card__info">{Props.info}</p>
     </div>
   );
 };
