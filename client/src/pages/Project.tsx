@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Card from "../components/Card";
 import TaskForm from "../components/TaskForm";
+import { IoAdd as AddTaskButton } from "react-icons/io5";
 import "../styles/style.css";
 
 type Props = {};
@@ -38,6 +39,7 @@ const App = (props: Props) => {
       body: JSON.stringify({
         name: incomingData.name,
         info: incomingData.info,
+        steps: incomingData.steps,
       }),
     })
       .then((res) => {
@@ -55,8 +57,6 @@ const App = (props: Props) => {
       .catch(catchError);
   };
 
-  // console.log(`task successfully created ${JSON.stringify(data)}`);
-
   const deleteTask = (id: string) => {
     fetch(`/api/v1/tasks/${id}`, {
       method: "delete",
@@ -69,8 +69,6 @@ const App = (props: Props) => {
       .catch((err) => console.log(err));
   };
 
-  // useEffect(() => console.log(cardData), [cardData]);
-
   let Cards;
   if (cardData) {
     Cards = cardData.map((card) => {
@@ -78,6 +76,7 @@ const App = (props: Props) => {
         <Card
           title={card.name}
           info={card.info}
+          steps={card.steps}
           id={card._id}
           key={card._id}
           deleteTask={deleteTask}
@@ -89,24 +88,28 @@ const App = (props: Props) => {
   return (
     <div className="project-page">
       <div className="project-page__header">
-        <h1 className="project-page__header__title">MY PROJECT</h1>
-        <h2
-          className="project-page__header__form-button"
-          onClick={() => setFormIsOpen(!formIsOpen)}
-        >
-          create new task
-        </h2>
+        <h1 className="project-page__header__title">{"MY TASKS"}</h1>
+        {/* <h2 className="project-page__header__form-button">set timer</h2> */}
       </div>
-      <TaskForm
-        formOpen={formIsOpen}
-        createTask={createTask}
-        closeForm={() => {
-          console.log("close form");
-          setFormIsOpen(!formIsOpen);
-        }}
-      />
-      <div className="cards">{Cards}</div>
-      <button onClick={() => fetchAllTasks()}>fetch data</button>
+      <div className="project-page__divider">
+        {"tasks"}
+        <AddTaskButton
+          size={"auto"}
+          className="project-page__add-button"
+          onClick={() => setFormIsOpen(true)}
+        />
+      </div>
+      <div className="project-page__content">
+        <TaskForm
+          formOpen={formIsOpen}
+          createTask={createTask}
+          closeForm={() => {
+            setFormIsOpen(false);
+          }}
+        />
+        <div className="cards">{Cards}</div>
+        {/* <button onClick={() => fetchAllTasks()}>fetch data</button> */}
+      </div>
     </div>
   );
 };

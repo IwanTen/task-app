@@ -1,8 +1,12 @@
+@import url(c:\Users\Iwan\web-dev\task-app\client\src\styles\app.css);
 :root {
   --gradient-color-1: #429d7c;
   --gradient-color-2: #145d62;
   --primary-text: #0d4245;
   --secondary-text: #1a5357;
+  --light-text: #689b9e;
+  --button-primary: #ea8e62;
+  --button-secondary: #429d7c;
 }
 
 * {
@@ -23,11 +27,6 @@ body {
   background: linear-gradient(180deg, var(--gradient-color-1) 0%, var(--gradient-color-2) 121.63%);
 }
 
-:root {
-  --gradient-color-1: #429d7c;
-  --gradient-color-2: #145d62;
-}
-
 .app {
   min-height: 100vh;
   background: -webkit-gradient(linear, left top, left bottom, from(var(--gradient-color-1)), color-stop(121.63%, var(--gradient-color-2)));
@@ -40,12 +39,10 @@ body {
   -ms-grid-columns: (minmax(15rem, 1fr))[auto-fit];
       grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 1rem;
-  padding: 2rem;
 }
 
 .card {
   background-color: #fff;
-  background: rgba(255, 255, 255, 0.9);
   border-radius: 6px;
   padding: 1rem;
   min-width: 100%;
@@ -64,6 +61,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 0.5rem;
+  font-style: italic;
 }
 
 .card__header__title {
@@ -74,7 +72,37 @@ body {
   color: var(--secondary-text);
 }
 
-.close-button {
+.card__step {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: var(--light-text);
+  font-weight: 800;
+  font-size: 0.7rem;
+  margin: 0.5rem;
+}
+
+.card__step__number {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 2px solid var(--light-text);
+  aspect-ratio: 1/1;
+  width: 1.3rem;
+  border-radius: 4px;
+  margin-right: 0.3em;
+}
+
+.card .close-button {
   fill: var(--primary-text);
 }
 
@@ -96,17 +124,10 @@ body {
   margin: 1rem;
 }
 
-.create-task {
+.task-form {
   background: white;
-  min-height: 300px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100vh;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  border-radius: 6px;
+  min-height: 200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -117,9 +138,10 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 1rem;
 }
 
-.create-task__header {
+.task-form__header {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -127,9 +149,19 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
 }
 
-.create-task__form {
+.task-form__header__title {
+  color: var(--primary-text);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.task-form__form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -137,13 +169,106 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
 }
 
-.collapsed {
-  -webkit-transform: translateX(100%);
-          transform: translateX(100%);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+.task-form__label {
+  color: var(--primary-text);
+  font-weight: 600;
+  margin: 0.3rem;
+}
+
+.task-form__input {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  min-height: 2rem;
+  min-width: 14rem;
+}
+
+.task-form__input:focus-within {
+  outline-color: var(--button-secondary);
+}
+
+.task-form__buttons {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.task-form__button {
+  min-width: 6rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  background-color: var(--button-primary);
+  color: white;
+}
+
+.task-form__button--cancel {
+  background-color: var(--button-secondary);
+}
+
+.task-form__button:hover {
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.task-form__step-wrapper {
+  position: relative;
+}
+
+.task-form__clear-step {
+  color: var(--button-secondary);
+  position: absolute;
+  top: 0.5rem;
+  margin-left: 0.3rem;
+}
+
+.task-form__clear-step :hover {
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.task-form__add-step {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1rem;
+  color: var(--secondary-text);
+}
+
+.task-form__add-step:hover {
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.task-form--hidden {
+  min-height: 0;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.attribute-container label {
+  color: var(--secondary-text);
 }
 
 .project-page {
@@ -161,15 +286,15 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .project-page__header__title {
-  font-size: 5rem;
-  background-color: #294144;
-  color: transparent;
-  text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.9);
-  -webkit-background-clip: text;
-  background-clip: text;
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  word-wrap: none;
 }
 
 .project-page__header__form-button {
@@ -179,6 +304,28 @@ body {
   border-radius: 4px;
   padding: 0.2em 0.5em;
   cursor: pointer;
+}
+
+.project-page__content {
+  padding: 1rem;
+}
+
+.project-page__divider {
+  color: #ffffff;
+  border-bottom: 1px solid white;
+  line-height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.project-page__add-button {
+  color: white;
+  width: 1.5rem;
+  height: auto;
 }
 
 .content {

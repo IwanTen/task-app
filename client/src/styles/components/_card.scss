@@ -2,11 +2,9 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 1rem;
-  padding: 2rem;
 }
 .card {
   background-color: #fff;
-  background: rgba(255, 255, 255, 0.9);
   border-radius: 6px;
   padding: 1rem;
   min-width: 100%;
@@ -17,6 +15,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.5rem;
+    font-style: italic;
 
     &__title {
       color: var(--primary-text);
@@ -25,8 +24,26 @@
   &__info {
     color: var(--secondary-text);
   }
-}
+  &__step {
+    display: flex;
+    align-items: center;
+    color: var(--light-text);
+    font-weight: 800;
+    font-size: 0.7rem;
+    margin: 0.5rem;
+    &__number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--light-text);
+      aspect-ratio: 1/1;
+      width: 1.3rem;
+      border-radius: 4px;
+      margin-right: 0.3em;
+    }
+  }
 
-.close-button {
-  fill: var(--primary-text);
+  .close-button {
+    fill: var(--primary-text);
+  }
 }
